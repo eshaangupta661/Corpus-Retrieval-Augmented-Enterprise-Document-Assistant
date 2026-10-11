@@ -1,0 +1,3 @@
+# FORMAT EXAMPLE ONLY: replace source/page labels with documents from your own corpus.
+{"id": "vac-1", "question": "How many vacation days do new hires get?", "relevant": [{"source": "hr_handbook.pdf", "page": 12}], "reference_answer": "New hires get 15 vacation days per year."}
+{"id": "none-1", "question": "What is the CEO's favourite colour?", "relevant": []}

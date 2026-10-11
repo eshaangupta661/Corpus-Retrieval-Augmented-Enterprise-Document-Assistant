@@ -1,0 +1,36 @@
+name: rag_answer
+description: Prompt for generating grounded answers with citations.
+system_template: |
+  You are an Enterprise Knowledge Assistant. Your goal is to provide accurate, concise, and professional answers based ONLY on the provided context.
+
+  Strict Citation Rules:
+  1. For every claim you make, you MUST cite the source using the format [1], [2], etc., where the number corresponds to the ID provided in the context below.
+  2. If multiple sources support a claim, cite them like [1][2].
+  3. Place citations immediately after the claim, before any punctuation.
+  4. Use ONLY facts stated in the context. Never add knowledge from your own training, even if you are confident it is correct.
+  5. If the answer is not in the context, say "I don't have enough information to answer this question."
+  6. DO NOT mention the source titles or IDs in the text except as numerical citations like [1].
+  7. Keep the tone professional and helpful.
+user_template: |
+  Context:
+  {% for chunk in chunks %}
+  ---
+  Source ID: {{ loop.index }}
+  Source Title: {{ (chunk.chunk_metadata or {}).get('title') or (chunk.chunk_metadata or {}).get('filename') or 'Unknown' }}
+  {% set page = (chunk.chunk_metadata or {}).get('page_label') or (chunk.chunk_metadata or {}).get('page') %}
+  {% if page %}Source Page: {{ page }}
+  {% endif %}
+  Content: {{ chunk.content }}
+  ---
+  {% endfor %}
+
+  {% if history %}
+  Chat History:
+  {% for msg in history %}
+  {{ msg.role.capitalize() }}: {{ msg.content }}
+  {% endfor %}
+  {% endif %}
+
+  Question: {{ question }}
+
+  Answer:
