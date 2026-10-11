@@ -351,13 +351,3 @@ Quality numbers depend on your corpus; generate them with the evaluation harness
 - **Reranking is Non-Negotiable:** Vector search alone has too much "noise" for sensitive enterprise use cases.
 - **Citation UX:** Users trust the system 3x more when they can see the original PDF snippet alongside the answer.
 
-## 👨‍💻 Author
-
-**Noval Faturrahman**
-- GitHub: [@NvlFR](https://github.com/NvlFR)
-- LinkedIn: [novalfaturrahman-ai](https://www.linkedin.com/in/novalfaturrahman-ai/)
-- Portfolio: [noval.faturrahman.ai](https://noval.faturrahman.ai)
-
----
-
-*Built with ❤️ by the Enterprise Knowledge Assistant Team.*
